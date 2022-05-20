@@ -15,12 +15,13 @@ import org.singularux.messages.ui.theme.MessagesTheme
 @Composable
 fun SearchTopBar(
     filterValue: String,
+    onBackClick: () -> Unit,
     onFilterChange: (String) -> Unit,
     scrollBehavior: TopAppBarScrollBehavior
 ) {
     SmallTopAppBar(
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = onBackClick) {
                 Icon(
                     imageVector = Icons.Rounded.ArrowBack,
                     contentDescription = null
@@ -49,6 +50,7 @@ private fun Preview() {
     MessagesTheme {
         SearchTopBar(
             filterValue = "Test123",
+            onBackClick = {},
             onFilterChange = {},
             scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         )
