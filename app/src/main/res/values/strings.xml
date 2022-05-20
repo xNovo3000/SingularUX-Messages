@@ -4,5 +4,7 @@
     <string name="app_name">Messages</string>
 
     <!-- ThreadsRoute -->
+    <string name="threads_search_messages">Search messages</string>
+    <string name="threads_n_selected">%d selected</string>
 
 </resources>
