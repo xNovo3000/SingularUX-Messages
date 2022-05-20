@@ -1,6 +1,7 @@
 package org.singularux.messages.ui.component
 
 import android.content.res.Configuration
+import androidx.activity.compose.BackHandler
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Delete
@@ -19,6 +20,7 @@ fun ThreadsTopBarSelection(
     onDeleteClick: () -> Unit,
     scrollBehavior: TopAppBarScrollBehavior
 ) {
+    BackHandler { onCloseClick() }
     SmallTopAppBar(
         navigationIcon = {
             IconButton(onClick = onCloseClick) {

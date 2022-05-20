@@ -39,6 +39,13 @@ fun ThreadsRoute(
     val threads by messagesViewModel.threads.observeAsState(listOf())
     // Nested scrolling connection
     val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
+    // When threads updates, remove from selectedItems when ID is not present in threads anymore
+    LaunchedEffect(threads) {
+        val orphans = selectedItems.filter { selectedItem -> threads.none { selectedItem == it.id } }
+        if (orphans.isNotEmpty()) {
+            selectedItems = selectedItems - orphans.toSet()
+        }
+    }
     // Build
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),

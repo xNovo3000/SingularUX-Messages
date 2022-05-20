@@ -5,6 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightTheme = lightColorScheme(
 	primary = md_theme_light_primary,
@@ -69,6 +71,15 @@ fun MessagesTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
+	// Set system bars color
+	val systemUiController = rememberSystemUiController()
+	SideEffect {
+		systemUiController.setSystemBarsColor(
+			color = if (!useDarkTheme) LightTheme.surface else DarkTheme.surface,
+			darkIcons = !useDarkTheme
+		)
+	}
+	// Set theme
     MaterialTheme(
         colorScheme = if (!useDarkTheme) LightTheme else DarkTheme,
         typography = MessagesTypography,
