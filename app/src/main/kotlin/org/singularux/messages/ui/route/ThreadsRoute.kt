@@ -36,12 +36,12 @@ fun ThreadsRoute(
     }
     // State holders
     var selectedItems by remember { mutableStateOf(setOf<Long>()) }
-    val threads by messagesViewModel.threads.observeAsState(listOf())
+    val threads by messagesViewModel.threads.observeAsState()
     // Nested scrolling connection
     val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
     // When threads updates, remove from selectedItems when ID is not present in threads anymore
     LaunchedEffect(threads) {
-        val orphans = selectedItems.filter { selectedItem -> threads.none { selectedItem == it.id } }
+        val orphans = selectedItems.filter { selectedItem -> threads?.none { selectedItem == it.id } ?: true }
         if (orphans.isNotEmpty()) {
             selectedItems = selectedItems - orphans.toSet()
         }
@@ -78,7 +78,7 @@ fun ThreadsRoute(
             innerPadding = innerPadding,
             permissionState = readThreadsPermissionState,
             onThreadClick = {
-                if (threads.isEmpty()) {
+                if (selectedItems.isEmpty()) {
                     // TODO: Go to thread page
                 } else {
                     selectedItems = if (selectedItems.contains(it.id)) {

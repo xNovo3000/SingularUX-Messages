@@ -14,7 +14,7 @@ import org.singularux.messages.ThreadItem
 @ExperimentalMaterial3Api
 @Composable
 fun ThreadsContent(
-    threads: List<ThreadItem>,
+    threads: List<ThreadItem>?,
     selectedThreads: Set<Long>,
     innerPadding: PaddingValues,
     permissionState: PermissionState,
@@ -28,10 +28,7 @@ fun ThreadsContent(
                 permissionState = permissionState
             )
         }
-        threads.isEmpty() -> {
-            ThreadsContentEmpty(innerPadding = innerPadding)
-        }
-        else -> {
+        threads?.isNotEmpty() == true -> {
             ThreadsContentNotEmpty(
                 threads = threads,
                 selectedThreads = selectedThreads,
@@ -39,6 +36,9 @@ fun ThreadsContent(
                 onThreadClick = onThreadClick,
                 onThreadLongClick = onThreadLongClick
             )
+        }
+        else -> {
+            ThreadsContentEmpty(innerPadding = innerPadding)
         }
     }
 }
