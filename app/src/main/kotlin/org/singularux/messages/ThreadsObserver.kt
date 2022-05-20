@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.database.ContentObserver
+import android.database.DatabaseUtils
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
@@ -33,7 +34,17 @@ class ThreadsObserver(
         // Execute
         job?.cancel()
         job = CoroutineScope(Dispatchers.IO).launch {
-
+            val result = mutableListOf<ThreadItem>()
+            context.contentResolver.query(
+                Telephony.MmsSms.CONTENT_CONVERSATIONS_URI,
+                arrayOf("*"),
+                null,
+                null,
+                null
+            ).use {
+                DatabaseUtils.dumpCursor(it)
+            }
+            mutableThreads.postValue(result)
         }
     }
 

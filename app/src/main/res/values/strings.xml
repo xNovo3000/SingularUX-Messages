@@ -11,4 +11,7 @@
     <string name="threads_give_permission">Give permission</string>
     <string name="threads_new_thread">New conversation</string>
 
+    <!-- SearchRoute -->
+    <string name="search_not_found">No messages found</string>
+
 </resources>

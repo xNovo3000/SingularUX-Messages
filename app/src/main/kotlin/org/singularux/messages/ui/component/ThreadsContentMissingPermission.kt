@@ -54,10 +54,10 @@ fun ThreadsContentMissingPermission(
                 if (permissionState.status.shouldShowRationale) {
                     permissionState.launchPermissionRequest()
                 } else {
-                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also {
+                    context.startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also {
                         it.addCategory(Intent.CATEGORY_DEFAULT)
                         it.data = Uri.parse("package:" + context.packageName)
-                    }
+                    })
                 }
             }
         ) {

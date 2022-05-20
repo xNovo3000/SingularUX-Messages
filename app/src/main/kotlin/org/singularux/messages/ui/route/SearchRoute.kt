@@ -33,7 +33,7 @@ fun SearchRoute(
         }
     ) {
         // Set result here
-        val result by messagesViewModel.searchResults.observeAsState(listOf())
+        val result by messagesViewModel.searchResults.observeAsState()
         // Catch filter change. Clear when removed from composition
         DisposableEffect(filterValue) {
             if (filterValue.isNotBlank()) messagesViewModel.search(filterValue)
