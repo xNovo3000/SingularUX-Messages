@@ -6,8 +6,9 @@
     <!-- ThreadsRoute -->
     <string name="threads_search_messages">Search messages</string>
     <string name="threads_n_selected">%d selected</string>
-    <string name="threads_no_threads">There are no threads</string>
-    <string name="threads_missing_permission">The permission to read messages is missing</string>
+    <string name="threads_no_threads">There are no conversations</string>
+    <string name="threads_missing_permission">The permission to read conversations is missing</string>
     <string name="threads_give_permission">Give permission</string>
+    <string name="threads_new_thread">New conversation</string>
 
 </resources>
