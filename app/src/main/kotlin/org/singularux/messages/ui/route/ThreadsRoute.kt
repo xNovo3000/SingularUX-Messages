@@ -51,7 +51,7 @@ fun ThreadsRoute(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             ThreadsTopBar(
-                selectedItems = 0,
+                selectedItems = selectedItems.size,
                 onSearchClick = {
                     if (readThreadsPermissionState.status.isGranted) {
                         navController.navigate(Route.Search.name)
